@@ -1,11 +1,11 @@
-import { Button } from '@/components/ui/button'
+import { LoginForm } from '@/components/login-form'
 
-const Home = () => {
+export default function Page() {
   return (
-    <div>
-      <Button variant="destructive">Hello</Button>
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <LoginForm />
+      </div>
     </div>
   )
 }
-
-export default Home
