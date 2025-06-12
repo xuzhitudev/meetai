@@ -1,11 +1,19 @@
-import { LoginForm } from '@/components/login-form'
+import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 
-export default function Page() {
-  return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <LoginForm />
-      </div>
-    </div>
-  )
+import { auth } from '@/lib/auth'
+import { HomeView } from '@/modules/home/ui/views/page'
+
+const Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  if (!session) {
+    return redirect('/sign-in')
+  }
+
+  return <HomeView />
 }
+
+export default Page
